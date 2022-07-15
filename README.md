@@ -1,8 +1,9 @@
 # Investing Dashboard
 This app takes user input on the initial screen and then will provide the user with a dashboard to keep progress on his/her portfolio. It includes updated stock charts, news, and market sentiment. 
 
-Link to project: (Work in Progress)
 
+Link to project: (Work in Progress)
+![dashboard](https://user-images.githubusercontent.com/57625094/179323420-da499888-3814-4176-a50e-e3b9ae75fe91.gif)
 
 ## How It's Made:
 Tech used: HTML, CSS, JavaScript, React, TailwindCSS, StockData API
