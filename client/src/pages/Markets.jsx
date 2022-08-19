@@ -2,51 +2,31 @@ import Header from "../components/Header"
 import Navbar from "../components/Navbar"
 import { useLocation } from 'react-router-dom'
 import { useState } from "react"
-
 import axios from 'axios'
 import { useEffect } from "react"
 
+const API_KEY = process.env.REACT_APP_API_KEY
+
 function Markets() {
   let location = useLocation()
-  // const [choice, setChoice] = useState('AAPL')
   const [markets, setMarkets] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  // let quote = `https://yfapi.net/v6/finance/quote/${choice}`
-  // let quoteSummary = `https://yfapi.net/v11/finance/quoteSummary/${choice}`
   let marketSummary = `https://yfapi.net/v6/finance/quote/marketSummary`
-  let trending = `https://yfapi.net/v6/finance/quote/trending`
-
-
-  // this should be hidden
+  
   let options = {
     method: 'GET',
     mode: "cors",
     url: marketSummary,
     params: {modules: 'defaultKeyStatistics,assetProfile'},
     headers: {
-      'x-api-key': 'l8laDtx3dI7tS78sTw673aBOR8bX8BQ28G6yID6D'
+      'x-api-key': `${API_KEY}`
     }
   };
-  // this should be hidden
-  let trending_options = {
-    method: 'GET',
-    mode: "cors",
-    url: marketSummary,
-    params: {modules: 'defaultKeyStatistics,assetProfile'},
-    headers: {
-      'x-api-key': 'l8laDtx3dI7tS78sTw673aBOR8bX8BQ28G6yID6D'
-    }
-  };
-
-  // const onChange = (e) => {
-  //   setChoice(e.target.value)
-  // }
 
   const handleClick = async (e) => {
     setIsLoading(true)
     setMarkets([])
-    // setChoice(e.target.value)
     
     await axios.request(options)
     .then(function (response) {
@@ -73,21 +53,7 @@ function Markets() {
             
             {/* all graphs below */}
             <div className=" mt-2 pl-6">
-              {/* <h1>Search for a Stock</h1>
-              <input 
-                value={choice}
-                onChange={onChange}
-                className="border-2 p-2"
-              /> */}
-              {/* <button 
-                onClick={handleClick}
-                className="pt-4 pb-4 pl-6 pr-6 font-bold ml-4 rounded-xl bg-sky-600 text-white"
-              >
-                Get Updated Market Info
-              </button> */}
-
               <div 
-                  
                   className="flex w-full justify-between place-items-center h-16 m-3 border-bottom"
                 >
                   <h1 className="font-bold text-xl w-1/4 text-center">Market:</h1>
@@ -96,9 +62,6 @@ function Markets() {
                   <h1 className="font-bold text-xl w-1/4 text-center">% Change: </h1>
                 </div>
 
-
-
-                
 
 
               {isLoading ? 

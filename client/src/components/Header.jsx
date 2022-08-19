@@ -1,6 +1,7 @@
 import { FaBell } from 'react-icons/fa'
 
 function Header({total, userName, title, img}) {
+
   return (
     <>
         <header className="w-full p-3 pl-6 flex place-items-center justify-between">

@@ -6,6 +6,8 @@ import { useState } from "react"
 import axios from 'axios'
 import { useEffect } from "react"
 
+const API_KEY = process.env.REACT_APP_API_KEY
+
 function Search() {
   let location = useLocation()
   const [choice, setChoice] = useState('AAPL')
@@ -13,33 +15,17 @@ function Search() {
   const [assetProfile, setAssetProfile] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
-  // let quote = `https://yfapi.net/v6/finance/quote/${choice}`
   let quoteSummary = `https://yfapi.net/v11/finance/quoteSummary/${choice}`
-  // let marketSummary = `https://yfapi.net/v6/finance/quote/marketSummary`
-  let trending = `https://yfapi.net/v6/finance/quote/trending`
 
-
-  // this should be hidden
   let options = {
     method: 'GET',
     mode: "cors",
     url: quoteSummary,
     params: {modules: 'defaultKeyStatistics,assetProfile'},
     headers: {
-      'x-api-key': 'l8laDtx3dI7tS78sTw673aBOR8bX8BQ28G6yID6D'
+      'x-api-key': `${API_KEY}`
     }
   };
-
-  // // this should be hidden
-  // let trending_options = {
-  //   method: 'GET',
-  //   mode: "cors",
-  //   url: trending,
-  //   params: {modules: 'defaultKeyStatistics,assetProfile'},
-  //   headers: {
-  //     'x-api-key': 'l8laDtx3dI7tS78sTw673aBOR8bX8BQ28G6yID6D'
-  //   }
-  // };
 
   const onChange = (e) => {
     setChoice(e.target.value)
@@ -64,9 +50,9 @@ function Search() {
         
   }
 
-  // useEffect(() => {
-  //   handleClick()
-  // }, [])
+  useEffect(() => {
+    handleClick()
+  }, [])
   
 
   return (
@@ -95,8 +81,8 @@ function Search() {
 
               {(!keyStats && !assetProfile && isLoading) ? 
               <>
-             <div className="w-full flex w-screen mt-10">
-                <div className="flex h-96 shadow-xl bg-slate-700 ml-24 mr-24 rounded-xl">
+             <div className="w-full flex mt-10 justify-center">
+                <div className="flex h-96 shadow-xl bg-slate-700 mr-10 rounded-xl">
                   <div className="animate-pulse flex flex-col w-96 justify-between p-4 ">
                     <div className="font-bold text-xl w-32 text-left text-center h-8 bg-slate-300 rounded"></div>
                     <div className="flex justify-between">
@@ -116,7 +102,7 @@ function Search() {
                     <div className="font-bold text-xl w-full text-center h-3 bg-slate-300 rounded"></div>                 
                   </div>
                 </div>
-                <div className="flex h-96 shadow-xl bg-slate-700 ml-24 mr-24 rounded-xl">
+                <div className="flex h-96 shadow-xl bg-slate-700 rounded-xl">
                   <div className="animate-pulse flex flex-col w-96 justify-between p-4 ">
                     <div className="font-bold text-xl w-32 text-left text-center h-8 bg-slate-300 rounded"></div>
                     <div className="flex justify-between">
@@ -203,68 +189,7 @@ function Search() {
               <h1 className="w-full p-10 bg-white mt-3 rounded-md">{assetProfile['longBusinessSummary']}</h1>
             </div>
             
-            }
-             
-
-
-              {/* {!keyStats ? null : 
-                (
-                <div 
-                  key={Math.random()}
-                  className=""
-                >
-                  <h1>52 Wk Change: {keyStats['52WeekChange'].fmt}</h1>
-                  <h1>BV: {keyStats['bookValue'].fmt}</h1>
-                  <h1>Forward PE: {keyStats['forwardPE'].fmt}</h1>
-                  <h1>Dividends: {keyStats['lastDividendValue'].fmt}</h1>
-                  <h1>PB: {keyStats['priceToBook'].fmt}</h1>
-                  <h1>Margins: {keyStats['profitMargins'].fmt}</h1>
-                  <h1>EPS: {keyStats['trailingEps'].fmt}</h1>
-                  <h1>EBITDA: {keyStats['enterpriseToEbitda'].fmt}</h1>
-                  <h1>Beta: {keyStats['beta'].fmt}</h1>
-                </div>
-                )
-              }
-              {!assetProfile ? null : 
-                (
-                <div 
-                  key={Math.random()}
-                  className=""
-                >
-                  <a href={assetProfile['website']}>{assetProfile['website']}</a>
-                  <h1>Industry: {assetProfile['industry']}</h1>
-                  <h1>Sector: {assetProfile['sector']}</h1>
-                  <h1>Employees: {assetProfile['fullTimeEmployees']}</h1>
-
-                  <div className="border-2">
-                    <h1 className="text-xl">Bosses</h1>
-                    <div>
-                      <h1>Name: {assetProfile['companyOfficers'][0].name}</h1>
-                      <h1>Title: {assetProfile['companyOfficers'][0].title}</h1>
-                      <h1>Age: {assetProfile['companyOfficers'][0].age}</h1>
-                      <h1>Salary: {assetProfile['companyOfficers'][0].totalPay}</h1>
-                    </div>
-                    <div>
-                      <h1>Name: {assetProfile['companyOfficers'][1].name}</h1>
-                      <h1>Title: {assetProfile['companyOfficers'][1].title}</h1>
-                      <h1>Age: {assetProfile['companyOfficers'][1].age}</h1>
-                      <h1>Salary: {assetProfile['companyOfficers'][1].totalPay}</h1>
-                    </div>
-                    <div>
-                      <h1>Name: {assetProfile['companyOfficers'][2].name}</h1>
-                      <h1>Title: {assetProfile['companyOfficers'][2].title}</h1>
-                      <h1>Age: {assetProfile['companyOfficers'][2].age}</h1>
-                      <h1>Salary: {assetProfile['companyOfficers'][2].totalPay}</h1>
-                    </div>
-                  </div>
-                  
-                  <h1>{assetProfile['longBusinessSummary']}</h1>
-
-                  
-                </div>
-                )
-              } */}
-              
+            }    
                 
             </div>
 
