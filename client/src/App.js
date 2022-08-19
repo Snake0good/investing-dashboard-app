@@ -1,7 +1,7 @@
 import { FaAccusoft, FaArrowDown } from "react-icons/fa";
 import { useState, createContext } from "react";
 import { NavLink } from 'react-router-dom'
-// import dashboardGIF from './images/dashboard-copy.gif'
+import dashboardGIF from './images/dashboard-copy.gif'
 import investureLogo from './images/investure-logo.png'
 
 
@@ -38,7 +38,7 @@ function App() {
             </div>
             <h1 className="text-2xl text-center p-5">Sorry, the <span className="italic text-slate-700">investure</span> app must be viewed on a device with a screen width larger than 1250px. Your device width is only {window.innerWidth}px </h1>
             <h1 className="text-xl text-center p-5">We apologize for any inconvenience. Have a look below to see what you're missing!</h1>
-            {/* <img className="w-full h-full" src={dashboardGIF} alt='dashboard gif' /> */}
+            <img className="w-full h-full" src={dashboardGIF} alt='dashboard gif' />
         </>
   )} else {
     return (
